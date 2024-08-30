@@ -1,6 +1,7 @@
 "use server";
 import { db } from "@/db/drizzle";
 import { users } from "@/db/schema";
+import { clerkClient } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
 export const getAllUsers = async () => {
@@ -16,19 +17,17 @@ export const getUser = async (userId: number) => {
     },
   });
 
-  return user
+  return user;
 };
 
-export const addUser = async (user:any) => {
+export const addUser = async (user: any) => {
   await db.insert(users).values({
-    id: 1,
-    name: "user1",
-    email: "correo@correo.com",
     clerkId: user?.clerkId,
+    name: user.name,
+    email: user.email,
     firstName: user?.firstName,
     lastName: user?.lastName,
-    photo: user?.photo
-
-  });
-  revalidatePath("/");
+    photo: user?.photo,
+  }).returning({clerkClient: user.clerkId})
+  // revalidatePath("/");
 };
