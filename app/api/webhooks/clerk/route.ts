@@ -68,8 +68,8 @@ export async function POST(req: Request) {
       photo: image_url,
     };
 
-    await addUser(user)
-    return NextResponse.json({message: "New User Create", user})
+    await addUser(user);
+    return NextResponse.json({ message: "New user created", user });
   }
 
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
