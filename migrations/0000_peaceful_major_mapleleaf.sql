@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "todos" (
-	"id" integer PRIMARY KEY NOT NULL,
+	"id" bigint PRIMARY KEY NOT NULL,
 	"text" text NOT NULL,
 	"done" boolean DEFAULT false NOT NULL,
 	"user_id" integer NOT NULL
@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS "todos" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "users" (
 	"id" integer PRIMARY KEY NOT NULL,
-	"text" text NOT NULL,
+	"name" text NOT NULL,
 	"email" text NOT NULL,
 	"clerkId" text NOT NULL,
 	"firstName" text NOT NULL,

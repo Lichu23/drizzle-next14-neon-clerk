@@ -1,4 +1,7 @@
 "use server";
+import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
+
 import { db } from "@/db/drizzle";
 import { users } from "@/db/schema";
 
@@ -23,12 +26,13 @@ export const addUser = async (user: any) => {
     .insert(users)
     .values({
       clerkId: user?.clerkId,
-      name: user?.name,
       email: user?.email,
+      name: user?.name!,
       firstName: user?.firstName,
       lastName: user?.lastName,
       photo: user?.photo,
     })
-    .returning({ clerkClient: user.clerkId });
+    .returning({ clerkClientId: users?.clerkId });
+
   // revalidatePath("/");
 };

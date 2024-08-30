@@ -1,42 +1,42 @@
 "use client";
-
 import { SignOutButton, UserButton, useClerk, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
-const NavBar = () => {
+const Navbar = () => {
   const { isSignedIn, user } = useUser();
   const { signOut } = useClerk();
   return (
-    <nav className="flex border-b h-[60pxpx] justify-between items-center p-4">
-      <Link href="/">
-        <h1 className="font-bold text-3xl">Logo</h1>
-      </Link>
-
-      <div className="flex items-center gap-x-4">
+    <nav className="border-b h-[8vh] flex items-center">
+      <div className="container flex items-center justify-between">
+        <Link href="/">
+          <h1 className="font-bold text-3xl">Logo</h1>
+        </Link>
+      </div>
+      <div className="flex items-center gap-x-5">
         {isSignedIn ? (
           <>
-            <button className="bg-slate-50 hover:scale-105 border p-2 rounded-md">
+            <button className="w-[100px] bg-gray-200 p-2 rounded-md text-center">
               <SignOutButton />
             </button>
             <UserButton />
           </>
         ) : (
-          <>
+          <div className="flex items-center gap-x-5">
             <Link href="/sign-in">
-              <button className="bg-slate-50 hover:scale-105 border p-2 rounded-md">
-                Sign In
+              <button className="w-[100px] bg-gray-200 p-2 rounded-md text-center">
+                Sign in
               </button>
             </Link>
             <Link href="/sign-up">
-              <button className="bg-slate-50 hover:scale-105 border p-2 rounded-md">
+              <button className="w-[100px] bg-gray-200 p-2 rounded-md text-center">
                 Sign Up
               </button>
             </Link>
-          </>
+          </div>
         )}
       </div>
     </nav>
   );
 };
 
-export default NavBar;
+export default Navbar;

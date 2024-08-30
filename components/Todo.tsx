@@ -1,3 +1,4 @@
+
 "use client";
 import { ChangeEvent, FC, useState } from "react";
 import { todoType } from "@/types/todoTypes";
@@ -62,12 +63,14 @@ const Todo: FC<Props> = ({
   // Rendering the Todo component
   return (
     <div className="flex items-center gap-2 p-4 border-gray-200 border-solid border rounded-lg">
+      {/* Checkbox for marking the todo as done */}
       <input
         type="checkbox"
         className="text-blue-200 rounded-sm h-4 w-4"
         checked={isDone}
         onChange={handleIsDone}
       />
+      {/* Input field for todo text */}
       <input
         type="text"
         value={text}
@@ -77,6 +80,7 @@ const Todo: FC<Props> = ({
           todo.done ? "line-through" : ""
         } outline-none read-only:border-transparent focus:border border-gray-200 rounded px-2 py-1 w-full`}
       />
+      {/* Action buttons for editing, saving, canceling, and deleting */}
       <div className="flex gap-1 ml-auto">
         {editing ? (
           <button
