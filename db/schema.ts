@@ -5,10 +5,11 @@ import {
   boolean,
   pgTable,
   timestamp,
+  serial
 } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
-  id: integer("id").primaryKey(),
+  id: serial("id").primaryKey(),
   name: text("text").notNull(),
   email: text("email").notNull(),
   clerkId: text("clerkId").notNull(),
